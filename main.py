@@ -1,5 +1,6 @@
 from game import *
+from config import *
 
-game = Game(True)
-game.setUpWindow()
+game = Game(O)
+game.setUp()
 game.mainLoop()

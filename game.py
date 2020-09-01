@@ -1,6 +1,7 @@
 from tkinter import *
 from config import *
 from player import *
+from tkinter import messagebox
 
 class Game:
     def __init__(self, clicked):
@@ -8,12 +9,15 @@ class Game:
         self.count = 0  # if reaches 9 game tie     [Integer]
         self.title = TITLE
         self.screen = Tk()
-        self.players = [Player("X", 0), Player("O", 0)]
+        self.players = [Player("X", X), Player("O", O)]
         self.player1Score = IntVar()
         self.player2Score = IntVar()
         
     def setUp(self):
-        pass
+        self.setUpWindow()
+        self.CreateLayout()
+        self.CreateBoard()
+        self.CreateOptions()
 
     def mainLoop(self):
         self.screen.mainloop()
@@ -22,9 +26,7 @@ class Game:
         self.screen.title(self.title)
         self.screen.geometry("1350x750+0+0")
         self.screen.configure(background="Light Yellow")
-        self.CreateLayout()
-        self.CreateBoard()
-        self.CreateOptions()
+
 
     def CreateLayout(self):
         self.Tops = Frame(self.screen, bg="Light yellow", pady=2, width=1350, height=100, relief=SUNKEN)
@@ -82,17 +84,6 @@ class Game:
 
         self.buttons = [button1, button2, button3, button4, button5, button6, button7, button8, button9]
 
-    # onclick for button
-    def click(self, button):
-        pass
-    
-    # Clear up board
-    def reset(self):
-        pass
-
-    # reset but with clearing the scores :D
-    def newGame(self):
-        pass
 
     def CreateOptions(self):
         '''Reset button, new game button and Scores'''
@@ -114,3 +105,27 @@ class Game:
 
         btnNew = Button(self.RightFrame2, text = "New Game", font=('arial',40, 'bold'), height=1, width=20, bg='gainsboro', command=self.newGame)
         btnNew.grid(row=3, column=0, padx=6, pady=10)
+
+    # onclick for button
+    def click(self, button):
+        if button["text"] == " " and self.clicked == True:
+            button["text"] = "X"
+            button["fg"] = "green"
+            self.clicked = False
+            self.count += 1
+        elif button["text"] == " " and self.clicked == False:
+            button["text"] = "O"
+            button["fg"] = "Red"
+            self.clicked = True
+            self.count += 1
+        else:
+            messagebox.showerror(TITLE, "Hey this filed has been already taken\nPick another one")
+
+    
+    # Clear up board
+    def reset(self):
+        pass
+
+    # reset but with clearing the scores :D
+    def newGame(self):
+        pass
