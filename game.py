@@ -121,8 +121,88 @@ class Game:
             self.count += 1
         else:
             messagebox.showerror(TITLE, "Hey this filed has been already taken\nPick another one")
+        
+        self.winOrNot()
 
-    
+    def winOrNot(self):
+        for player in self.players:
+            sign = player.sign
+
+            if (self.buttons[0]["text"] == sign and self.buttons[1]["text"] == sign and self.buttons[2]["text"] == sign):
+                self.buttons[0].config(bg="orange")
+                self.buttons[1].config(bg="orange")
+                self.buttons[2].config(bg="orange")
+                self.winner = True
+                messagebox.showinfo("Tic-Tac-Toe", "X wins")
+
+            elif (self.buttons[3]["text"] == sign and self.buttons[4]["text"] == sign and self.buttons[5]["text"] == sign):
+                self.buttons[3].config(bg="orange")
+                self.buttons[4].config(bg="orange")
+                self.buttons[5].config(bg="orange")
+                self.winner = True
+                messagebox.showinfo("Tic-Tac-Toe", "X wins")
+
+            elif (self.buttons[6]["text"] == sign and self.button[7]["text"] == sign and self.button[8]["text"] == sign):
+                self.buttons[6].config(bg="orange")
+                self.buttons[7].config(bg="orange")
+                self.buttons[8].config(bg="orange")
+                self.winner = True
+                messagebox.showinfo("Tic-Tac-Toe", "X wins")
+
+                """COLUMNS"""
+            elif (self.buttons[0]["text"] == sign and self.buttons[3]["text"] == sign and self.buttons[6]["text"] == sign):
+                self.buttons[0].config(bg="orange")
+                self.buttons[3].config(bg="orange")
+                self.buttons[6].config(bg="orange")
+                self.winner = True
+                messagebox.showinfo("Tic-Tac-Toe", "X wins")
+
+
+            elif (self.buttons[1]["text"] == sign and self.buttons[4]["text"] == sign and self.buttons[7]["text"] == sign):
+                self.buttons[1].config(bg="orange")
+                self.buttons[4].config(bg="orange")
+                self.buttons[7].config(bg="orange")
+                self.winner = True
+                messagebox.showinfo("Tic-Tac-Toe", "X wins")
+
+            
+            elif (self.buttons[2]["text"] == sign and self.buttons[5]["text"] == sign and self.buttons[8]["text"] == sign):
+                self.buttons[2].config(bg="orange")
+                self.buttons[5].config(bg="orange")
+                self.buttons[8].config(bg="orange")
+                self.winner = True
+                messagebox.showinfo("Tic-Tac-Toe", "X wins")
+
+                """DIAG"""
+            elif (self.buttons[0]["text"] == sign and self.buttons[4]["text"] == sign and self.buttons[8]["text"] == sign):
+                self.buttons[0].config(bg="orange")
+                self.buttons[4].config(bg="orange")
+                self.buttons[8].config(bg="orange")
+                self.winner = True
+                messagebox.showinfo("Tic-Tac-Toe", "X wins")
+
+
+            elif (self.buttons[2]["text"] == sign and self.buttons[4]["text"] == sign and self.buttons[6]["text"] == sign):
+                self.buttons[2].config(bg="orange")
+                self.buttons[4].config(bg="orange")
+                self.buttons[6].config(bg="orange")
+                self.winner = True
+                messagebox.showinfo("Tic-Tac-Toe", "Player " +  sign + " wins")
+            
+            if self.count == 9 and self.winner == False:
+                messagebox.showinfo("Tic-Tac-Toe", "It's a tie\nVery close match")
+
+            if self.winner == True:
+                if self.clicked == False:
+                    n = int(self.player1Score.get())
+                    score = n + 1
+                    self.player1Score.set(score)
+                else:
+                    n = int(self.player2Score.get())
+                    score = n + 1
+                    self.player2Score.set(score)
+
+
     # Clear up board
     def reset(self):
         for button in self.buttons:
