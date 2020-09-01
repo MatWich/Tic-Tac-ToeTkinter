@@ -7,6 +7,7 @@ class Game:
     def __init__(self, clicked):
         self.clicked = clicked  # Who starts firsts [Boolean]
         self.count = 0  # if reaches 9 game tie     [Integer]
+        self.winner = False     # if sb wins change to True [Boolean]
         self.title = TITLE
         self.screen = Tk()
         self.players = [Player("X", X), Player("O", O)]
@@ -124,7 +125,11 @@ class Game:
     
     # Clear up board
     def reset(self):
-        pass
+        for button in self.buttons:
+            button.config(text=" ")
+            button.config(bg="gainsboro")
+        self.winner = False
+        self.count = 0
 
     # reset but with clearing the scores :D
     def newGame(self):
