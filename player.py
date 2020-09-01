@@ -3,3 +3,5 @@ class Player:
         self.score = score
         self.sign = sign
     
+    def setZeroScore(self):
+        self.score = 0
